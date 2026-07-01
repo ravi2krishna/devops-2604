@@ -234,3 +234,54 @@ Class - 2
         bug reports, new features, and tasks.
 
         -> https://everhour.com/blog/wp-content/uploads/2017/05/github-zenhub-1024x433.png
+
+
+Class - 3
+===========
+
+    -> Start Any Project 
+
+        -> Requirement -> Design -> Code -> Build -> Test -> Release -> Deploy 
+
+        -> Create GitHub Account - https://github.com/
+
+        -> Create Repository 
+
+        -> Assigning Work To Developers - Projects & Issues 
+
+        -> Developers Will Start Coding - Version Control Starts 
+
+        -> Developers Will Update Code to GitHub Repository
+
+    
+    -> Start LMS Project (Development - Coding)
+
+        -> Create GitHub Account - https://github.com/
+
+        -> Create Repository - https://github.com/ravi2krishna/login-2604.git
+
+        -> Assigning Work To Developers - Projects & Issues 
+
+            -> https://github.com/users/ravi2krishna/projects/17/views/1 
+
+            -> https://github.com/ravi2krishna/login-2604/issues 
+
+        
+        -> Developers Will Start Coding - Version Control Starts 
+
+            -> Install Git Software On Laptop For Versioning 
+
+                -> Open GitBash 
+
+                    -> git config --global user.name github_id
+
+                    -> git config --global user.email github_email 
+
+            -> Install Visual Studio Code (VS Code), to write code 
+
+            -> Start Coding For Issues Assigned 
+
+        -> Developers Will Update Code To GitHub Repository
+
+
+
