@@ -406,3 +406,64 @@ Class - 4
             -> Unique Mobile Number
             -> Unique PAN CARD
             -> Unique Debit / Credit Card / UPI 
+
+
+
+Class - 5
+===========            
+
+    -> Server Setup On Azure Cloud 
+
+        -> Server == Azure Virtual Machine (VM)
+
+        -> Server will be part of Network 
+
+            Network == Azure Virtual Network (VNET)
+
+        -> Azure Virtual Machine will be part of Azure Virtual Network  
+
+        -> Firewall 
+
+           -> A firewall is a network security system that monitors and controls 
+           network traffic based on predetermined security rules (protocols)
+
+           -> SSH protocol: Secure Shell Used for remote login, command execution
+
+                -> Port: 22
+
+           -> HTTP protocol: Hypertext Transfer Protocol Used For data exchange on the World Wide Web
+
+                -> Port: 80 
+
+        -> Firewall == Azure Network Security Group (NSG)
+
+    
+    -> To Create / Work With Servers On Azure 
+
+        -> VNET 
+        -> VM 
+        -> NSG 
+
+    -> How To Connect With Server ? 
+
+        -> SSH Client Software 
+
+            -> SSH Client Software helps you connect with remote linux server 
+
+        -> From Web 
+
+            -> https://ssheasy.com/
+
+        -> From Laptop / Desktop 
+
+            -> Install GitBash / Terminal / etc 
+
+            -> Open GitBash
+
+                -> ssh username@public-ip-address 
+
+                -> ssh ubuntu@public-ip-address
+
+                -> ssh ubuntu@20.120.246.25
+
+    -> NOTE: We are using Linux Servers, which has only CLI (Command Line Interface)
