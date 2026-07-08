@@ -530,3 +530,118 @@ Class - 6
 
                 -> chmod 400 2604.pem 
 
+
+Class - 7
+===========
+
+    -> NOTE: We are using Linux Servers, which has only CLI (Command Line Interface)
+
+    -> CLI - Command Line Interface
+
+        -> CLI is a powerful tool for "interacting with servers" 
+        through "text based commands" 
+
+    -> Hardware & System Softwares (OS) Commands 
+
+        -> CPU / Processor Info 
+
+            -> cat /proc/cpuinfo 
+
+        -> Memory / RAM Info 
+
+            -> free -m 
+
+        -> Disk Info 
+
+            -> df -h 
+
+        -> Network Info 
+
+            -> ip address 
+
+        -> System Softwares (OS) Commands 
+
+            -> uname 
+
+            -> cat /etc/os-release 
+
+        -> Checking Running Processes 
+
+            -> ps -ef 
+
+            -> htop / top (Type q to quit)
+
+    
+    -> NOTE: We Need Servers To Host / Deploy Applications, so that 
+    Customers Can Access the Application From Servers. 
+
+
+    -> Web Server 
+
+        -> A web server is computer software [ Nginx HTTP Server ] 
+        and underlying hardware [ AWS Instance / AZURE VM ] 
+        that accepts requests via HTTP (port 80) 
+        to distribute web content.
+
+        -> NOTE: All Servers that host websites/web apps must have web server program.
+
+    -> Commands To Work With Web Application Deployment 
+
+        -> Check Internally 
+
+            -> Command To Check, Which Port is in use by which Service 
+
+                -> sudo ss -ntpl 
+
+                -> Web Servers run on Port 80 and we don't see port 80 with above command 
+
+        -> Check Externally     
+
+            -> Browse Public IP Address Of Linux Server Created 
+
+                -> This site can’t be reached, indicates No Web Server has been Installed 
+
+    -> Install Web Server Nginx 
+
+        -> sudo apt update -y 
+
+        -> sudo apt install nginx -y 
+
+        -> sudo ss -ntpl 
+
+        -> Browse Public IP Address
+
+    -> How To Host Our Application ?
+
+        -> For Web Servers, we have DocumentRoot i.e location 
+        where web pages will be loaded from /var/www/html 
+
+        -> ls /var/www/html
+
+        -> index page is called Landing Page Of Application 
+
+        -> cat /var/www/html/index.nginx-debian.html
+
+    -> Repository URL: https://github.com/ravi2krishna/login-2604.git
+
+    -> Clone Repository Using CLI 
+
+        -> sudo git clone <url> <destination> 
+
+        -> sudo git clone https://github.com/ravi2krishna/login-2604.git /var/www/html
+
+            -> fatal: destination path '/var/www/html' already exists and is not an empty directory.
+
+        -> not an empty directory, so let's make it empty 
+
+            -> sudo rm -rf /var/www/html
+
+            -> sudo git clone https://github.com/ravi2krishna/login-2604.git /var/www/html
+
+            -> ls /var/www/html
+
+                -> README.md  img_avatar2.png  index.html (success)
+
+            -> Browse Public IP Address
+
+    -> NOTE: Delete Server / VM Once Lab is Completed
