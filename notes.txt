@@ -645,3 +645,55 @@ Class - 7
             -> Browse Public IP Address
 
     -> NOTE: Delete Server / VM Once Lab is Completed
+
+
+Class - 8
+===========
+
+    -> Shell Scripting 
+
+        -> A shell script is a computer program, or text file, that contains 
+        a sequence of commands for a Unix-based operating system's shell 
+        (command-line interpreter) to execute automatically. 
+        It functions as a program to "automate repetitive tasks" that a user 
+        would otherwise have to type manually into the terminal one command at a time. 
+
+    -> Deployment Script
+
+        -> https://raw.githubusercontent.com/ravi2krishna/login-2604/refs/heads/scripts/deploy.sh
+
+    -> To Download a file we have wget command 
+
+        -> wget <link> 
+
+        -> wget https://raw.githubusercontent.com/ravi2krishna/login-2604/refs/heads/scripts/deploy.sh
+
+        -> ls 
+
+        -> sh deploy.sh
+
+    
+    -> Any Project (Development + Operations)
+
+    -> Login Project is very Simple (It has Only Frontend i.e one index.html page)
+
+        -> https://github.com/ravi2krishna/login-2604.git 
+
+    -> Real World Applications Have Frontend, Backend API's and Database Systems 
+
+    -> Most Popular Applications Use Three Tier Architecture (Frontend, Backend API's and Database Systems )
+
+        -> https://en.wikipedia.org/wiki/Programming_languages_used_in_most_popular_websites
+
+    -> As our Login Application Has No Backend and Database, will shift to a different Application
+
+    -> Our Actual Project is LMS Application 
+
+        -> https://lms.digitallync.ai/
+
+        -> LMS Application Has Three Tier Architecture (Frontend, Backend API's and Database Systems )
+
+            -> Database: Postgres 
+            -> Backend API's: Nodejs 
+            -> Frontend: Reactjs 
+
