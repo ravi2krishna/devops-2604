@@ -2110,3 +2110,165 @@ Class - 16
     -> docker container run -dt --name login-app -p 8080:80 ravi2krishna/login-2604
     -> docker container ls -a
     -> Browse IP with port 8080
+
+
+Class - 17
+===========    
+
+    -> Project - 1 (LMS Application)
+
+        -> Above Project Took 2-3 Hours To Deploy 
+
+    -> Project - 2 (LMS Application) 
+
+        -> Implement Acceleration i.e "FASTER" Deployments Using "Containerization" Practice 
+
+    -> Dockerize LMS Application 
+
+        -> You can Dockerize any three tier architecture application
+
+        -> LMS: Frontend + Backend + Database (Web Server - Nodejs API - Postgres DB)
+
+        -> NOTE: Just like LMS App Setup On Server, we will do in Containers 
+
+                -> Setup DB  
+                -> Setup API 
+                -> Setup WebApp 
+
+            -> Setup Postgres Database Using Docker 
+
+                -> docker container run -dt --name lms-db -e POSTGRES_PASSWORD=Login@123 postgres 
+                -> docker container ls -a
+    
+            -> Setup Nodejs Using Docker 
+
+                -> docker container run -dt --name t1 node:20
+                -> docker container ls -a
+                -> docker container exec t1 node -v 
+                -> docker container exec t1 npm -v 
+            
+            -> Steps To Build LMS Backend Image 
+
+                -> ls 
+                -> cd ~
+                -> git clone -b dev https://github.com/ravi2krishna/lms-v1.git
+                -> cd ~/lms-v1/api
+                -> ls 
+                -> vi .env 
+                    MODE=dev
+                    PORT=8080
+                    DATABASE_URL=postgresql://postgres:Login@123@localhost:5432/postgres
+
+                -> docker container inspect lms-db 
+                    
+                    -> Update IP of lms-db Container in .env file 
+                    MODE=dev
+                    PORT=8080
+                    DATABASE_URL=postgresql://postgres:Login@123@172.17.0.2:5432/postgres
+                
+                -> Remove Docker File (existing) 
+                    -> rm Dockerfile 
+                    -> ls Dockerfile
+
+                -> vi Dockerfile
+
+                    # Base Image
+                    FROM node:20
+
+                    # RUN - Runs Commands
+                    RUN mkdir /backend
+
+                    # WORKDIR - Set Path as Working Directory
+                    WORKDIR /backend
+
+                    # COPY - Copy Code
+                    COPY . /backend
+
+                    # RUN - Build Related Commands
+                    RUN npm install
+                    RUN npx prisma generate
+                    RUN npx prisma db push
+                    RUN npm run build
+
+                    # Start Application
+                    # RUN node build/index.js
+                    CMD ["node","build/index.js"]
+
+
+                -> docker build -t ravi2krishna/lms-be .
+
+                -> docker image ls
+
+                -> docker container run -dt --name lms-be -p 8080:8080 ravi2krishna/lms-be
+
+                -> docker container ls -a 
+
+                -> Verify Backend Status 
+
+                    -> Verify with Browser - http://public-ip:8080/api  
+
+                    -> NOTE: If you get below message, backend deployment is success   
+                    
+                        {"message":"success","mode":"dev"}
+
+                    -> docker push ravi2krishna/lms-be
+
+            -> Steps To Build LMS Frontend Image 
+
+            -> cd ~/lms-v1/webapp/
+
+            -> ls 
+
+            -> vi .env 
+
+                VITE_API_URL=http://public-ip:8080/api
+
+            -> Remove Docker File (existing) 
+                -> rm Dockerfile 
+                -> ls Dockerfile
+
+            -> vi Dockerfile
+
+                # Base Image
+                FROM node:20 AS build
+
+                # RUN - Runs Commands
+                RUN mkdir /frontend
+
+                # WORKDIR - Set Path as Working Directory
+                WORKDIR /frontend
+
+                # COPY - Copy Code
+                COPY . /frontend
+
+                # RUN - Build Related Commands
+                RUN npm install
+                RUN npm run build
+
+                # Deploy Application On NGINX
+                FROM nginx
+
+                # COPY
+                COPY --from=build /frontend/dist /usr/share/nginx/html
+
+            -> docker build -t ravi2krishna/lms-fe . 
+
+            -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe 
+            -> docker container ls -a 
+
+            -> Verify Frontend With Browse Using - http://public-ip
+
+            -> docker push ravi2krishna/lms-fe
+
+        -> NOTE: In Future, if i want to run LMS Application
+
+            -> docker container run -dt --name lms-db -e POSTGRES_PASSWORD=Login@123 postgres 
+            -> docker container run -dt --name lms-be -p 8080:8080 ravi2krishna/lms-be
+            -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe 
+
+
+    -> Project - 2 (LMS Application)
+
+        -> Without Docker, Above Project Took 2-3 Hours To Deploy 
+
+        -> Using Docker, Above Project Took 2-3 Mins To Deploy 
