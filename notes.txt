@@ -2272,3 +2272,133 @@ Class - 17
         -> Without Docker, Above Project Took 2-3 Hours To Deploy 
 
         -> Using Docker, Above Project Took 2-3 Mins To Deploy 
+
+
+Class - 18
+===========
+
+    -> DevOps is a set of PRACTICES that works towards the 
+    "AUTOMATION" and "INTEGRATION" of the processes between 
+    Software Development (Dev) and IT (Ops) teams, 
+    so that organizations can "BUILD", "TEST" and "DEPLOY" 
+    softwares/applications "FASTER" and more "RELIABLE" 
+
+
+    -> Project - 2 
+
+        -> Implement Acceleration i.e FASTER Deployments Using Containerization 
+
+
+    -> Project - 3
+
+        -> Implement RELIABILITY i.e ALWAYS RUNNING without DOWNTIME (24/7) 
+        can be Achieved using "Orchestration" Practice
+
+        -> NOTE: Once we terminated Docker Server, We need to setup Environment from
+        the scratch once again (Single Point Of Failure)
+
+        -> Single Point Of Failure
+
+            -> A Single Point of Failure (SPOF) is a component in a system—hardware, 
+            software, network, or personnel—that, if it fails, 
+            causes the entire system to stop working. 
+            
+            -> SPOFs indicate a lack of redundancy, 
+            creating risks to availability and reliability. 
+            Common examples include a single server.
+
+        -> High Availability (HA)
+
+            -> High Availability means designing IT systems 
+            to operate continuously with minimal or zero downtime.
+
+            -> To Achieve High Availability, we need to eliminate 
+            Single Point of Failure (SPOF)
+
+             -> High Availability is achieved by deploying resources across 
+            multiple availability zones (AZs), an availability zone is an physical datacenter.
+
+            -> To Achieve High Availability / Reliability, We need process called "Orchestration"
+
+
+        -> NOTE: To Implement Orchestration Practice, We use "Kubernetes"
+
+    
+    -> Kubernetes
+
+        -> Kubernetes is a Production-Grade Container Orchestration, which builds up on 
+        "15 years of experience of running production workloads at Google"
+
+        -> Kubernetes was originally designed by Google, and is now maintained by the 
+        Cloud Native Computing Foundation (CNCF)
+
+        
+    -> Kubernetes Components / Architecture
+
+        -> https://miro.medium.com/v2/1*UUU4oblu-xDDoZAitaRz2g.jpeg
+
+        -> https://www.cherryservers.com/v3/assets/blog/2025-05-19/img-01.png
+
+    
+    -> Master Components
+
+        -> API Server: 
+            
+            -> The API server acts as the brain of the Kubernetes cluster. 
+            It provides a central point of communication for all the other components. 
+            When you want to create, update, or delete something in the cluster, 
+            you communicate with the API server.
+
+        -> etcd: 
+            
+            -> Think of etcd as the memory of the Kubernetes cluster. 
+            It stores the configuration data and the state of the entire cluster. 
+            When any component wants to know the current state of the cluster, it asks etcd.
+
+        -> Scheduler: 
+            
+            -> The Scheduler is like a matchmaker. 
+            Its job is to decide which worker node should run each new app container/pod. 
+            It considers factors like available resources, to make sure app containers/pods 
+            are placed on suitable worker nodes.
+
+        -> Controller: 
+
+            -> The Controller Manager is like the supervisor of the cluster. 
+            It continuously observes the state of the cluster through the API server. 
+            If it detects that the actual state of the cluster doesn't match the desired state 
+            (for example, if an app container/pod goes down), 
+            it takes action to make the cluster converge to the desired state.
+
+    
+    -> Worker Components
+
+        -> Kubelet: 
+
+            -> The Kubelet is like the worker's Agent Software.  
+            It runs on every worker node and is responsible for making sure 
+            that the containers/pods assigned to its node are running and healthy. 
+            It takes care of starting, stopping, and monitoring containers within the pods. 
+            It updates the status back to Master.
+
+        -> Docker: 
+
+            -> The container runtime is the software that runs and manages containers.  
+            The container runtime is responsible for pulling container images from a registry, 
+            creating containers, and managing their life cycles.
+
+        -> Kube Proxy: 
+
+            -> The Kube Proxy is like the traffic cop of the worker nodes. 
+            It manages the network connections and routing between the containers/pods and services 
+            within the cluster. It ensures that network traffic is correctly directed to the 
+            right destination.
+
+    
+    -> Workstation Components
+
+        -> Kubectl 
+
+            -> kubectl is the official command-line interface (CLI) used 
+            to communicate with the Kubernetes API and manage your 
+            cluster's control plane. It allows you to deploy applications.
