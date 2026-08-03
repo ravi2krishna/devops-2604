@@ -2402,3 +2402,144 @@ Class - 18
             -> kubectl is the official command-line interface (CLI) used 
             to communicate with the Kubernetes API and manage your 
             cluster's control plane. It allows you to deploy applications.
+
+
+Class - 19
+===========
+
+    -> Setup Kubernetes For Learning 
+
+        -> Minikube - Mini Kubernetes (FREE -> Minimal Cost)
+
+        -> Minikube is a "single node cluster", where the master processes and worker processes 
+        and workstation all run on one node (one server).
+
+            -> https://www.devopsschool.com/blog/wp-content/uploads/2022/12/minikube-architecture-4-1024x683.png
+
+        -> Minikube is great for learning, but it is "not designed for running production workloads".
+
+        -> For production environments, you would typically use "managed Kubernetes services" 
+        provided by "cloud providers" i.e AWS EKS or AZURE AKS or GOOGLE GKE etc
+
+    
+    -> Minikube Requires, below hardware configuration
+
+            -> AWS / AZURE
+
+            -> 4 GB RAM - 2 CPU's - 30 GB Storage 
+
+            -> NOTE: Charges Applicable i.e 4 INR Per Hour 
+
+            -> NOTE: Add Following Rules in Firewall
+
+                -> Make sure to add ports 22, 80, 30000-32767 as part of your Firewall 
+                Security Group(AWS) or Network Security Group(Azure)
+
+    -> Setup Minikube 
+
+        -> Verify Commands 
+
+            -> docker 
+            -> minikube 
+            -> kubectl 
+
+        -> Setup Docker 
+
+            -> docker 
+            -> wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            -> docker
+            -> sudo usermod -aG docker ubuntu
+            -> newgrp docker
+
+        -> Setup Minikube
+
+            -> minikube
+            -> curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+            -> sudo install minikube-linux-amd64 /usr/local/bin/minikube
+            -> minikube
+            -> minikube status
+            -> minikube start
+            -> minikube status
+
+        -> Setup kubectl
+
+            -> kubectl
+            -> curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            -> chmod u+x kubectl 
+            -> sudo mv kubectl /usr/local/bin/kubectl
+            -> kubectl 
+
+    -> NOTE: Once the minikube cluster is setup, we are gonna be using "kubectl" to do 
+    any sort of work on the cluster like getting status, creating applications etc 
+
+        -> kubectl get pods 
+
+        -> kubectl get replicasets
+
+        -> kubectl get deployments 
+         
+        -> etc 
+        
+    
+    -> Kubernetes Objects 
+
+        -> By creating an object, you’re telling the Kubernetes system 
+        what applications to run in the cluster
+
+        -> Few examples of kubernetes objects include pods, replicasets, deployments etc.
+        
+        -> To work with Kubernetes objects, whether to "create", "modify" or "delete" them, 
+        you’ll need to use a command-line tool called KUBECTL.
+
+    
+    -> Object Spec & Object Status 
+
+        -> Object Spec
+
+            -> The object spec, which you(devops engineer) must provide, 
+            describes your desired state for the object(application), 
+            the characteristics that you want the object to have.  
+
+        -> Object Status
+
+            -> The object status describes the actual state of the object, 
+            and is supplied and updated by the Kubernetes system. 
+
+
+    -> Manage Objects 
+
+        -> Managing Objects inside kubernetes can be done using
+
+            -> Commands - Imperative Commands 
+
+            -> CODE (YAML) - Declarative Configuration Files or Kubernetes Manifests (recommended)
+
+
+    -> Pod Object 
+
+        -> A Pod Object, represents a "unit of deployment" i.e 
+        a "single instance of an application" in Kubernetes.
+
+            -> Login Application: login-vm 
+
+            -> Login Application: login-container 
+
+            -> Login Application: login-pod 
+
+        -> Imperative Commands (Similar To Docker Commands)
+
+            -> kubectl get pods (it's like docker container ls -a)
+
+            -> kubectl run name_of_pod --image image_name --port=port_number  (it's like docker container run)
+
+            -> kubectl run nginx-pod --image nginx --port=80 
+
+            -> kubectl get pods 
+
+            -> kubectl describe pod name_of_pod (it's like docker inspect command)
+
+            -> kubectl describe pod nginx-pod
+
+            -> kubectl exec name_of_pod -- command (it's like docker exec command)
+
+            -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html 
