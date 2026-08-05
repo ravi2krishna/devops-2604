@@ -1,0 +1,12 @@
+apiVersion: v1 # Based On Type Of Object Version
+kind: Pod # Type Of Object
+metadata: # Data about data 
+  name: nginx-pod # Name Of Pod
+spec:
+  containers:
+  - name: nginx-container # Name Of Container 
+    image: nginx # Name Of Image
+    ports: # Port Which Container Uses 
+    - containerPort: 80
+
+# kubectl run nginx-pod --image nginx --port=80 

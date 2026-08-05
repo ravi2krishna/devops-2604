@@ -2543,3 +2543,109 @@ Class - 19
             -> kubectl exec name_of_pod -- command (it's like docker exec command)
 
             -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html 
+
+
+Class - 20
+===========
+
+    -> Representing kubernetes (k8s) using CODE (YAML)
+
+    -> YAML 
+
+        -> YAML is a human-readable data serialization language. 
+        It is commonly used for "configuration files" (k8s) and in applications 
+        where data is being stored or transmitted.
+
+        -> YAML focuses on USER FRIENDLINESS & EASY READABILITY
+
+            -> https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlO2nvPAnbt5BtpPEkAetXCBHjvGdQqp_wFxYgtXxux0jSNU0e9Ceb707S&s=10
+
+        -> NOTE: YAML is used to store information about different k8s object
+        pods, replicasets, deployments etc 
+
+    
+    -> YAML in k8s has following types 
+
+        -> Simple Key Values Pairs 
+
+            -> The basic type of entry in a YAML file is of a key value pair. 
+            After the Key and colon there is a space and then the value.
+
+                    -> key: value 
+
+        
+        -> Lists 
+
+            -> Lists would have a number of items listed under the name of the list. 
+            The elements of the list would start with a -
+
+                -> Fruits:
+                   - apple
+                   - banana 
+                   - etc 
+
+
+        -> Dictionaries 
+
+            -> Set Of Key Values 
+
+            -> banana:
+                 color: yellow
+                 calories: 200
+                 fat: 0.5 
+
+    
+    -> NOTE: Every Kubernetes Object has 4 Top Level Items in yaml 
+
+        -> apiVersion
+
+        -> kind 
+
+        -> metadata 
+
+        -> spec 
+
+    -> Checkout Objects Like Pods, Replicasets, Deployments etc 
+
+        -> https://kubernetes.io/docs/concepts/workloads/pods/
+
+        -> https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+
+        -> https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ 
+
+        -> Every Kubernetes Object has 4 Top Level Items in yaml 
+
+
+        -> Get YAML Definition for k8s Objects 
+
+            -> Approach 1 - Get To Official Site 
+
+                -> https://kubernetes.io/docs/concepts/workloads/pods/
+
+            -> Approach 2 - Get To k8s API Document 
+
+                -> https://kubernetes.io/docs/reference/
+
+                -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/
+
+                -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#pod-v1-core
+
+    
+    
+    -> Pod Creation Using YAML 
+
+        -> Create Pod Definition (pod.yaml)
+
+        -> kubectl get pods 
+
+        -> kubectl apply -f pod.yaml 
+
+        -> kubectl get pods 
+
+        -> kubectl describe pod nginx-pod
+
+        -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html 
+
+        -> kubectl delete pod nginx-pod 
+
+        -> kubectl get pods 

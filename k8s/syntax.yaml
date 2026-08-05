@@ -1,0 +1,35 @@
+# Means Comments - This Line Will Be Ignored
+
+# YAML Files can have .yaml or .yml as extensions 
+
+# Simple Key Values Pairs 
+key: value
+name: ravi 
+location: hyderabad
+mobile: 9999999999
+
+# List: Multiple elements 
+courses:
+- devops
+- aws 
+- azure 
+- python 
+
+# Dictionary: Set Of Key Values (Properties/Characteristics)
+person:
+  name: ravi 
+  gender: male
+  weight: 63
+
+
+# Real Kubernetes Object Pod 
+apiVersion: v1 # Simple Key Value Pair
+kind: Pod # Simple Key Value Pair
+metadata: # Dictionary
+  name: nginx
+spec: # Dictionary 
+  containers: # List 
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
