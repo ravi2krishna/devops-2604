@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-containe-1
+        image: nginx
+        ports:
+        - containerPort: 80
+
+      - name: login-container-2
+        image: nginx
+        ports:
+        - containerPort: 8090
