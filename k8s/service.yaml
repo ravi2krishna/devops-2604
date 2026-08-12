@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+spec:
+  ports:
+    - name: http
+      port: 80 # this is the port where app is running 
+      nodePort: 30000 # this is the port to use on node (customers)
+  selector:
+    app: nginx
+  type: NodePort

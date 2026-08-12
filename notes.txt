@@ -2741,3 +2741,59 @@ Class - 21
                 index.html
 
         -> GOAL: Perform updates, Achieved
+
+
+Class - 22
+===========
+
+    -> How To Access Our Login Application, From Customers Perspective ??
+
+        -> Solution is Service Object 
+
+    -> Service Object 
+
+        -> A service is an object that acts as an endpoint, which you use to access the pods.
+
+        -> https://kubernetes.io/docs/concepts/services-networking/service/
+
+            
+            -> NodePort         -> access over internet, not for production (for minikube)
+
+            -> ClusterIP        -> access within intranet (private communication) (api to db)
+
+            -> LoadBalancer     -> access over internet, provided by cloud for production (EKS,AKS)
+
+            -> ExternalName     -> For Domain Name Forwarding 
+
+        -> https://assets.bytebytego.com/diagrams/0005-4-k8s-service-types.png
+
+        -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#service-v1-core
+
+    
+
+    -> NodePort
+
+        -> You can contact the NodePort Service, from outside (www) the cluster, 
+        by requesting on <NodeIP>:<NodePort>
+
+        -> This is similar to docker using -P (32768 - 61000)
+
+        -> In Kubernetes we use 30000-32767
+
+        -> NOTE: In Docker We have port Forwarding, likewise we have 
+        Kubernetes NodePort Service
+
+    
+    -> Labels & Selectors
+
+        -> Labels: Labels are key/value pairs that are attached to objects.  
+
+        -> Selectors: Using a label selector, we can identify a set of objects.
+
+        -> https://kubernetes.io/docs/tutorials/kubernetes-basics/public/images/module_04_labels.svg
+
+        -> To Port Forward In Kubernetes 
+
+            -> kubectl port-forward --address 0.0.0.0 service/service_name node_port:app_port 
+
+            -> kubectl port-forward --address 0.0.0.0 service/nginx-service 30000:80
