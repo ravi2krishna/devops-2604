@@ -2797,3 +2797,35 @@ Class - 22
             -> kubectl port-forward --address 0.0.0.0 service/service_name node_port:app_port 
 
             -> kubectl port-forward --address 0.0.0.0 service/nginx-service 30000:80
+
+
+Class - 23
+===========
+
+    -> NOTE: In Docker We Have Volumes For Data Management, Likewise we have 
+    "Kubernetes Persistent Volumes"
+
+    -> git clone https://github.com/ravi2krishna/login-2604.git 
+
+    -> docker container run -dt --name login-app-dev -p 8080:80 -v /home/ubuntu/login-2604:/usr/share/nginx/html nginx   
+
+    
+    -> Persistent Volumes - PV 
+
+        -> A PersistentVolume (PV) is a piece of "storage" in the cluster
+
+        -> PersistentVolume represents storage independent of pods 
+
+            -> How volumes are independent of containers  
+
+    
+    -> PersistentVolumeClaim - PVC
+
+            -> A PersistentVolumeClaim is a request for storage by a pod
+
+    -> https://kubernetes.io/docs/tutorials/configuration/configure-persistent-volume-storage/
+
+    
+    -> NOTE: How Everything Is Connected 
+
+        -> Pod(/usr/share/nginx/html) -> PersistentVolumeClaim -> PersistentVolume -> Storage (/mnt/data)
