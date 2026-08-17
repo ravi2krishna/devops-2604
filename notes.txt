@@ -2829,3 +2829,83 @@ Class - 23
     -> NOTE: How Everything Is Connected 
 
         -> Pod(/usr/share/nginx/html) -> PersistentVolumeClaim -> PersistentVolume -> Storage (/mnt/data)
+
+
+Class - 24
+===========
+
+    -> Auto Scaling 
+
+        -> In Kubernetes, you can automatically scale a workload using a HorizontalPodAutoscaler (HPA)
+
+    -> https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
+    
+    -> Check Metrics Server 
+
+            -> kubectl get pods -n kube-system
+
+        -> Get Metrics Server 
+
+            -> minikube addons enable metrics-server
+
+            -> kubectl get pods -n kube-system
+
+        -> requests: cpu: 200m
+
+            -> 1000 milli cpu = 1 cpu 
+
+            -> The container is asking for 200 milli cups to be "reserved" 
+
+
+        -> limits: cpu: 500m
+
+            -> The container can use up to 500 milli cups max 
+
+
+        -> kubectl exec pod/php-apache-7ff755b4cb-zm727 -- curl localhost
+
+        -> kubectl get hpa 
+
+        -> kubectl autoscale deployment php-apache --cpu=50% --min=1 --max=10
+
+        -> kubectl get hpa 
+
+            NAME         REFERENCE                     TARGET    MINPODS   MAXPODS   REPLICAS   AGE
+            php-apache   Deployment/php-apache/scale   0% / 50%  1         10        1          18s
+
+        
+        -> Please note that the current CPU consumption is 0% 
+        as there are no clients sending requests to the server 
+        (the TARGET column shows the average across all the Pods 
+        controlled by the corresponding deployment).
+
+        -> Increase Load 
+
+            -> kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+
+        -> Open one more session 
+
+            -> Within a minute or so, you should see the higher CPU load
+
+            -> kubectl get hpa 
+
+                NAME         REFERENCE                     TARGET      MINPODS   MAXPODS   REPLICAS   AGE
+                php-apache   Deployment/php-apache/scale   305% / 50%  1         10        1          3m
+
+            -> NOTE: CPU consumption has increased to 305% of the request. 
+            As a result, the Deployment was resized to 7 replicas
+
+        -> Stop generating load
+
+            -> In the terminal where you created the Pod that runs a busybox image, 
+            terminate the load generation by typing <Ctrl> + C
+
+            -> Then verify the result state (after a minute or so)
+
+                -> kubectl get hpa 
+
+                    NAME         REFERENCE                     TARGET       MINPODS   MAXPODS   REPLICAS   AGE
+                    php-apache   Deployment/php-apache/scale   0% / 50%     1         10        1          11m
+
+                -> NOTE: Deployment also shows that it has scaled down
