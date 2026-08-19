@@ -2909,3 +2909,64 @@ Class - 24
                     php-apache   Deployment/php-apache/scale   0% / 50%     1         10        1          11m
 
                 -> NOTE: Deployment also shows that it has scaled down
+
+
+Class - 25
+===========
+
+    -> Production Cluster Setup 
+
+    -> Minikube is great for learning, but it is "not designed for running production workloads".
+
+    -> For production environments, you would typically use "managed Kubernetes services" 
+    provided by "cloud providers" i.e AWS EKS or AZURE AKS or GOOGLE GKE etc
+
+    -> AKS Production Cluster 
+
+        -> Master (Highly Available) - DNS 
+
+        -> Worker Nodes (Highly Available) - Our Apps 
+
+        -> Workstation (Laptop -> Server)(use kubectl and execute k8s scripts)
+
+    -> Workstation Setup 
+
+        -> Setup docker
+
+            wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            docker
+            sudo usermod -aG docker ubuntu
+            newgrp docker
+
+
+        -> Setup Kubectl
+
+            kubectl 
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
+            chmod +x kubectl
+            sudo mv kubectl /usr/local/bin/kubectl
+            kubectl
+            kubectl get pods
+
+                -> The connection to the server localhost:8080 was refused - 
+                did you specify the right host or port?
+
+        -> Connect Workstation With Cluster, To Deploy Applications On Production Cluster
+
+            az 
+            curl -fsSL 'https://azurecliprod.blob.core.windows.net/$root/deb_install.sh' | sudo bash
+            az 
+            kubectl get pods
+            kubectl get services
+            # Authentication
+            az login --use-device-code
+            # Set Subscription Details
+            az account set --subscription ca209ddf-2077-4aee-9d80-57b644a54ca7
+            cat /home/ubuntu/.kube/config
+            # Download Credentials
+            az aks get-credentials --resource-group k8s --name lms --overwrite-existing
+            # Verify API Endpoint & Credentials
+            cat /home/ubuntu/.kube/config
+
+            kubectl get pods
+            kubectl get services
